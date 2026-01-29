@@ -1,55 +1,87 @@
-import { getFocusableElements } from "./utils";
-import { setFocus, getCurrent } from "./focus";
-import { runEvent } from "./events";
+import { getFocusableElements } from "./utils.js";
+import { executeAttribute } from "./events.js";
+import { FocusManager } from "./focus.js";
 
-export class TvController {
+export class TvControllerInstance {
+  private focusManager: FocusManager;
+  private isInitialized: boolean = false;
 
-  private static elements: HTMLElement[] = [];
-  private static index = 0;
+  constructor() {
+    this.focusManager = new FocusManager();
+  }
 
-  static init() {
-    this.elements = getFocusableElements();
+  public init(): void {
+    if (this.isInitialized) return;
 
-    if (!this.elements.length) {
-      console.warn("TvController: no focusable elements");
-      return;
+    window.addEventListener("keydown", this.handleKeyDown.bind(this));
+
+    // logical start: focus the first available element
+    const elements = getFocusableElements();
+    if (elements.length > 0) {
+      this.focusManager.focus(elements[0]!);
     }
 
-    setFocus(this.elements[0]);
-    this.listen();
+    this.isInitialized = true;
   }
 
-  private static listen() {
-    window.addEventListener("keydown", (e) => {
-      switch (e.key) {
-        case "ArrowRight":
-        case "ArrowDown":
-          this.move(1);
-          break;
+  private handleKeyDown(event: KeyboardEvent): void {
+    const elements = getFocusableElements();
+    if (elements.length === 0) return;
 
-        case "ArrowLeft":
-        case "ArrowUp":
-          this.move(-1);
-          break;
+    const currentFilter = this.focusManager.getCurrentFocus();
+    let currentIndex = -1;
 
-        case "Enter":
-          runEvent("tv-enter", getCurrent());
-          break;
+    if (currentFilter) {
+      currentIndex = elements.indexOf(currentFilter);
+    }
 
-        case "Backspace":
-        case "Escape":
-          runEvent("tv-back", getCurrent());
-          break;
-      }
-    });
+    if (currentIndex === -1 && elements.length > 0) {
+      currentIndex = 0;
+      this.focusManager.focus(elements[0]!);
+    }
+
+    switch (event.key) {
+      case "ArrowRight":
+      case "ArrowDown":
+        this.navigate(elements, currentIndex, 1);
+        event.preventDefault();
+        break;
+
+      case "ArrowLeft":
+      case "ArrowUp":
+        this.navigate(elements, currentIndex, -1);
+        event.preventDefault();
+        break;
+
+      case "Enter":
+        if (currentFilter) {
+          executeAttribute(currentFilter, "tv-enter");
+          event.preventDefault();
+        }
+        break;
+
+      case "Backspace":
+      case "Escape":
+        if (currentFilter) {
+          executeAttribute(currentFilter, "tv-back");
+          event.preventDefault();
+        }
+        break;
+    }
   }
 
-  private static move(step: number) {
-    this.index =
-      (this.index + step + this.elements.length) %
-      this.elements.length;
+  private navigate(elements: HTMLElement[], currentIndex: number, direction: number): void {
+    let nextIndex = currentIndex + direction;
 
-    setFocus(this.elements[this.index]);
-    runEvent("tv-focused", getCurrent());
+    if (nextIndex >= elements.length) {
+      nextIndex = 0;
+    } else if (nextIndex < 0) {
+      nextIndex = elements.length - 1;
+    }
+
+    const nextElement = elements[nextIndex];
+    if (nextElement) {
+      this.focusManager.focus(nextElement);
+    }
   }
 }

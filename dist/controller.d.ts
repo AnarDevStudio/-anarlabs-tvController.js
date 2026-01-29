@@ -1,8 +1,16 @@
-export declare class TvController {
-    private static elements;
-    private static index;
-    static init(): void;
-    private static listen;
-    private static move;
+/**
+ * Main controller for TV navigation.
+ */
+export declare class TvControllerInstance {
+    private focusManager;
+    private isInitialized;
+    constructor();
+    /**
+     * Initializes the TV Controller library.
+     * Sets up event listeners and initial focus.
+     */
+    init(): void;
+    private handleKeyDown;
+    private navigate;
 }
 //# sourceMappingURL=controller.d.ts.map

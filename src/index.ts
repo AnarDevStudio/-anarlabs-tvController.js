@@ -1,7 +1,5 @@
-export function initTVController() {
-  console.log("init");
-}
+import { TvControllerInstance } from "./controller.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  initTVController();
-});
+export function TvController(): TvControllerInstance {
+  return new TvControllerInstance();
+}
