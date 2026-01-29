@@ -1,1 +1,1 @@
-{"version":3,"file":"focus.d.ts","sourceRoot":"","sources":["../src/focus.ts"],"names":[],"mappings":"AAEA;;GAEG;AAGH,qBAAa,YAAY;IACvB,OAAO,CAAC,qBAAqB,CAA4B;IAEzD;;;OAGG;IACI,KAAK,CAAC,OAAO,EAAE,WAAW,GAAG,IAAI;IAqBxC;;OAEG;IACI,IAAI,CAAC,OAAO,EAAE,WAAW,GAAG,IAAI;IAQhC,eAAe,IAAI,WAAW,GAAG,IAAI;CAG7C"}
+{"version":3,"file":"focus.d.ts","sourceRoot":"","sources":["../src/focus.ts"],"names":[],"mappings":"AAEA,qBAAa,YAAY;IACvB,OAAO,CAAC,qBAAqB,CAA4B;IAElD,KAAK,CAAC,OAAO,EAAE,WAAW,GAAG,IAAI;IAgBjC,IAAI,CAAC,OAAO,EAAE,WAAW,GAAG,IAAI;IAOhC,eAAe,IAAI,WAAW,GAAG,IAAI;CAG7C"}

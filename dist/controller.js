@@ -1,18 +1,11 @@
 import { getFocusableElements } from "./utils.js";
 import { executeAttribute } from "./events.js";
 import { FocusManager } from "./focus.js";
-/**
- * Main controller for TV navigation.
- */
 export class TvControllerInstance {
     constructor() {
         this.isInitialized = false;
         this.focusManager = new FocusManager();
     }
-    /**
-     * Initializes the TV Controller library.
-     * Sets up event listeners and initial focus.
-     */
     init() {
         if (this.isInitialized)
             return;
@@ -33,23 +26,18 @@ export class TvControllerInstance {
         if (currentFilter) {
             currentIndex = elements.indexOf(currentFilter);
         }
-        // If we lost track of the element (e.g. dom change), try to find it or reset
         if (currentIndex === -1 && elements.length > 0) {
             currentIndex = 0;
             this.focusManager.focus(elements[0]);
-            // If we just reset focus, we might want to consume the event or not.
-            // But let's proceed to process navigation from this new start point.
         }
         switch (event.key) {
             case "ArrowRight":
             case "ArrowDown":
-                // Next element
                 this.navigate(elements, currentIndex, 1);
-                event.preventDefault(); // Prevent scrolling
+                event.preventDefault();
                 break;
             case "ArrowLeft":
             case "ArrowUp":
-                // Previous element
                 this.navigate(elements, currentIndex, -1);
                 event.preventDefault();
                 break;
@@ -63,14 +51,13 @@ export class TvControllerInstance {
             case "Escape":
                 if (currentFilter) {
                     executeAttribute(currentFilter, "tv-back");
-                    event.preventDefault(); // Prevent browser back
+                    event.preventDefault();
                 }
                 break;
         }
     }
     navigate(elements, currentIndex, direction) {
         let nextIndex = currentIndex + direction;
-        // Loop logic
         if (nextIndex >= elements.length) {
             nextIndex = 0;
         }
