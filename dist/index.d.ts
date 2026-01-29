@@ -1,4 +1,2 @@
-export * from './controller';
-export * from './focus';
-export * from './events';
+export declare function initTVController(): void;
 //# sourceMappingURL=index.d.ts.map

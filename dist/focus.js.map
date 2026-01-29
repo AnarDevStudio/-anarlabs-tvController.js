@@ -1,1 +1,1 @@
-{"version":3,"file":"focus.js","sourceRoot":"","sources":["../src/focus.ts"],"names":[],"mappings":";;AAAA,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAA"}
+{"version":3,"file":"focus.js","sourceRoot":"","sources":["../src/focus.ts"],"names":[],"mappings":"AAAA,IAAI,OAAO,GAAuB,IAAI,CAAC;AAEvC,MAAM,UAAU,QAAQ,CAAC,EAAe;IACtC,IAAI,OAAO,EAAE,CAAC;QACZ,OAAO,CAAC,SAAS,CAAC,MAAM,CAAC,YAAY,CAAC,CAAC;IACzC,CAAC;IAED,OAAO,GAAG,EAAE,CAAC;IACb,OAAO,CAAC,SAAS,CAAC,GAAG,CAAC,YAAY,CAAC,CAAC;AACtC,CAAC;AAED,MAAM,UAAU,UAAU;IACxB,OAAO,OAAO,CAAC;AACjB,CAAC"}
