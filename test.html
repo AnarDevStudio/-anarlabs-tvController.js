@@ -16,34 +16,44 @@
         .tv-focused {
             border: 3px solid red;
             background-color: #fcc;
+            animation: ease;
+            transition: 100ms;
+            transform: scale(1.2 , 1.2);
         }
     </style>
 </head>
 <body>
     <h1>TV Controller Test</h1>
+    <h2>This is tv-controller elements</h2>
+    <div>
+        <div id="box1" class="box" 
+            tv-focus="true" 
+            tv-focused="console.log('Focused Box 1')" 
+            tv-enter="alert('Enter on Box 1')" 
+            tv-back="console.log('Back on Box 1')">
+            Box 1
+        </div>
+
+        <div id="box2" class="box" 
+            tv-focus="true" 
+            tv-focused="console.log('Focused Box 2')" 
+            tv-enter="console.log('Enter on Box 2')" 
+            tv-back="console.log('Back on Box 2')">
+            Box 2
+        </div>
+
+        <div id="box3" class="box" 
+            tv-focus="true" 
+            tv-focused="console.log('Focused Box 3')">
+            Box 3
+        </div>
+    </div>
+    <h2>This is NoN tv-controller elements</h2>
+    <div>
+        <div class="box" tv-focus="false"></div>
+        <div class="box" tv-focus="false"></div>
+    </div>
     
-    <div id="box1" class="box" 
-         tv-focus="true" 
-         tv-focused="console.log('Focused Box 1')" 
-         tv-enter="alert('Enter on Box 1')" 
-         tv-back="console.log('Back on Box 1')">
-        Box 1
-    </div>
-
-    <div id="box2" class="box" 
-         tv-focus="true" 
-         tv-focused="console.log('Focused Box 2')" 
-         tv-enter="console.log('Enter on Box 2')" 
-         tv-back="console.log('Back on Box 2')">
-        Box 2
-    </div>
-
-    <div id="box3" class="box" 
-         tv-focus="true" 
-         tv-focused="console.log('Focused Box 3')">
-        Box 3
-    </div>
-
     <script type="module">
         import { TvController } from './dist/index.js';
         
