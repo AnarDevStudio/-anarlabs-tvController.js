@@ -1,14 +1,31 @@
 {
   "name": "tvcontroller-javascript",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Attribute-based TV remote navigation controller for web apps. Initialize once and control focus, enter, and back actions using HTML attributes.",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "tsc --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "tv",
+    "smart-tv",
+    "tv-remote",
+    "remote-control",
+    "keyboard-navigation",
+    "focus-management",
+    "html-attributes",
+    "javascript",
+    "frontend",
+    "web"
+  ],
   "author": "AnarLabs",
   "license": "ISC",
   "type": "commonjs",
