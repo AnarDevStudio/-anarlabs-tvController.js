@@ -1,5 +1,5 @@
 import { TvControllerInstance } from "./controller.js";
-export function TvController() {
+export function tvController() {
     return new TvControllerInstance();
 }
 //# sourceMappingURL=index.js.map

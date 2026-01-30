@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,38 +14,32 @@
             border: 1px solid #ccc;
             background-color: #eee;
         }
+
         .tv-focused {
             border: 3px solid red;
             background-color: #fcc;
             animation: ease;
             transition: 100ms;
-            transform: scale(1.2 , 1.2);
+            transform: scale(1.2, 1.2);
         }
     </style>
 </head>
+
 <body>
     <h1>TV Controller Test</h1>
     <h2>This is tv-controller elements</h2>
     <div>
-        <div id="box1" class="box" 
-            tv-focus="true" 
-            tv-focused="console.log('Focused Box 1')" 
-            tv-enter="alert('Enter on Box 1')" 
-            tv-back="console.log('Back on Box 1')">
+        <div id="box1" class="box" tv-focus="true" tv-focused="console.log('Focused Box 1')"
+            tv-enter="alert('Enter on Box 1')" tv-back="console.log('Back on Box 1')">
             Box 1
         </div>
 
-        <div id="box2" class="box" 
-            tv-focus="true" 
-            tv-focused="console.log('Focused Box 2')" 
-            tv-enter="console.log('Enter on Box 2')" 
-            tv-back="console.log('Back on Box 2')">
+        <div id="box2" class="box" tv-focus="true" tv-focused="console.log('Focused Box 2')"
+            tv-enter="console.log('Enter on Box 2')" tv-back="console.log('Back on Box 2')">
             Box 2
         </div>
 
-        <div id="box3" class="box" 
-            tv-focus="true" 
-            tv-focused="console.log('Focused Box 3')">
+        <div id="box3" class="box" tv-focus="true" tv-focused="console.log('Focused Box 3')">
             Box 3
         </div>
     </div>
@@ -53,12 +48,13 @@
         <div class="box" tv-focus="false"></div>
         <div class="box" tv-focus="false"></div>
     </div>
-    
+
     <script type="module">
-        import { TvController } from './dist/index.js';
-        
-        console.log("Initializing TvController...");
-        TvController().init();
+        import { tvController } from './dist/index.js';
+
+        console.log("Initializing tvController...");
+        tvController().init();
     </script>
 </body>
+
 </html>

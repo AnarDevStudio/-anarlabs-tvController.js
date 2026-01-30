@@ -1,6 +1,6 @@
 {
   "name": "tvcontroller-javascript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Attribute-based TV remote navigation controller for web apps. Initialize once and control focus, enter, and back actions using HTML attributes.",
   "main": "dist/index.js",
   "exports": {

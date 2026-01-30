@@ -1,5 +1,5 @@
 import { TvControllerInstance } from "./controller.js";
 
-export function TvController(): TvControllerInstance {
+export function tvController(): TvControllerInstance {
   return new TvControllerInstance();
 }

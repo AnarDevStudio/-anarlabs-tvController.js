@@ -1,3 +1,3 @@
 import { TvControllerInstance } from "./controller.js";
-export declare function TvController(): TvControllerInstance;
+export declare function tvController(): TvControllerInstance;
 //# sourceMappingURL=index.d.ts.map
