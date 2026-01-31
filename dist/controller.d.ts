@@ -4,6 +4,6 @@ export declare class TvControllerInstance {
     constructor();
     init(): void;
     private handleKeyDown;
-    private navigate;
+    private navigateSpatial;
 }
 //# sourceMappingURL=controller.d.ts.map

@@ -1,4 +1,4 @@
-import { getFocusableElements } from "./utils.js";
+import { getFocusableElements, getNearestElement } from "./utils.js";
 import { executeAttribute } from "./events.js";
 import { FocusManager } from "./focus.js";
 export class TvControllerInstance {
@@ -18,53 +18,49 @@ export class TvControllerInstance {
         this.isInitialized = true;
     }
     handleKeyDown(event) {
-        const elements = getFocusableElements();
-        if (elements.length === 0)
+        const currentFocused = this.focusManager.getCurrentFocus();
+        // If nothing is focused, try to focus the first element
+        if (!currentFocused) {
+            const elements = getFocusableElements();
+            if (elements.length > 0) {
+                this.focusManager.focus(elements[0]);
+            }
             return;
-        const currentFilter = this.focusManager.getCurrentFocus();
-        let currentIndex = -1;
-        if (currentFilter) {
-            currentIndex = elements.indexOf(currentFilter);
-        }
-        if (currentIndex === -1 && elements.length > 0) {
-            currentIndex = 0;
-            this.focusManager.focus(elements[0]);
         }
         switch (event.key) {
             case "ArrowRight":
-            case "ArrowDown":
-                this.navigate(elements, currentIndex, 1);
+                this.navigateSpatial("right");
                 event.preventDefault();
                 break;
             case "ArrowLeft":
+                this.navigateSpatial("left");
+                event.preventDefault();
+                break;
             case "ArrowUp":
-                this.navigate(elements, currentIndex, -1);
+                this.navigateSpatial("up");
+                event.preventDefault();
+                break;
+            case "ArrowDown":
+                this.navigateSpatial("down");
                 event.preventDefault();
                 break;
             case "Enter":
-                if (currentFilter) {
-                    executeAttribute(currentFilter, "tv-enter");
-                    event.preventDefault();
-                }
+                executeAttribute(currentFocused, "tv-enter");
+                event.preventDefault();
                 break;
             case "Backspace":
             case "Escape":
-                if (currentFilter) {
-                    executeAttribute(currentFilter, "tv-back");
-                    event.preventDefault();
-                }
+                executeAttribute(currentFocused, "tv-back");
+                event.preventDefault();
                 break;
         }
     }
-    navigate(elements, currentIndex, direction) {
-        let nextIndex = currentIndex + direction;
-        if (nextIndex >= elements.length) {
-            nextIndex = 0;
-        }
-        else if (nextIndex < 0) {
-            nextIndex = elements.length - 1;
-        }
-        const nextElement = elements[nextIndex];
+    navigateSpatial(direction) {
+        const currentFocused = this.focusManager.getCurrentFocus();
+        if (!currentFocused)
+            return;
+        const elements = getFocusableElements();
+        const nextElement = getNearestElement(currentFocused, elements, direction);
         if (nextElement) {
             this.focusManager.focus(nextElement);
         }
